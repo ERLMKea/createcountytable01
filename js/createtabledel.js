@@ -8,12 +8,8 @@ function addRow(county) {
   let cell1 = row.insertCell(0);
   cell1.innerText = county.countyCode;
 
-
   let cell2 = row.insertCell(1);
-  const inp = document.createElement('input');
-  inp.type = "text";
-  inp.setAttribute("value", county.name);
-  cell2.appendChild(inp);
+  cell2.innerText = county.name;
 
   //ATag with county href
   let cell3 = row.insertCell(2);
@@ -31,17 +27,6 @@ function addRow(county) {
     deleteRow(county, rowCount, row);
   }
   cell4.appendChild(pbDelete);
-
-  //update button
-  let cell5 = row.insertCell(4);
-  const pbUpdate = document.createElement("input");
-  pbUpdate.type = "button";
-  pbUpdate.setAttribute('value', 'Update Kommune');
-  pbUpdate.onclick = function () {
-    updateRow(county, rowCount, row);
-  }
-  cell5.appendChild(pbUpdate);
-
 
 } //addRow
 
