@@ -18,7 +18,7 @@ async function createCountyMap() {
   out(countyList);
   countyList.forEach((county, index) => {
     //out(kommune.navn + "ix=" + index);
-    countyMap.set(county.navn, kommune);
+    countyMap.set(county.name, county);
   })
 }
 
@@ -34,10 +34,8 @@ const pbShowCountyMap = document.getElementById('pbShowCountyMap');
 const tblCounties = document.getElementById('countyTable');
 
 //add event listeners
-pbGetKommuner.addEventListener('click', showAllKommuner);
-pbShowKommuneMap.addEventListener('click', showKommuneMap);
-pbFillDropDown.addEventListener('click', fillKommuner);
-inp1.addEventListener('change', inputChanged);
+pbFetchCounties.addEventListener('click', createCountyMap);
+pbShowCountyMap.addEventListener('click', showCountyMap);
 
 out("vi er færdige her");
 
