@@ -24,18 +24,41 @@ function addRow(county) {
   pbDelete.type = "button";
   pbDelete.setAttribute('value', 'Slet Kommune');
   pbDelete.onclick = function () {
-    deleteRow(county, rowCount);
+    deleteRow(county, rowCount, row);
   }
   cell4.appendChild(pbDelete);
 
 } //addRow
 
-function deleteRow(county, rowNo) {
+async function deleteRow(county, rowNo, row) {
   out(county);
-  out(rowNo);
-  countyTable.deleteRow(rowNo);
-
+  const response = await restDeleteCounty(county);
+  out("nu har vi slettet");
+  countyTable.deleteRow(row.rowIndex);
 }
+
+async function restDeleteCounty(county) {
+  const url = "http://localhost:8080/county/" + county.countyCode;
+
+  const fetchOptions = {
+    method: "DELETE",
+    headers: {
+      "Content-type": "application/json"
+    },
+    body: ""
+  }
+
+  //calls backend and wait for return
+  const response = await fetch(url, fetchOptions);
+
+  out(response);
+  if (!response.ok) {
+    out("Det gik ikke godt");
+  };
+
+  return response;
+} //restDeleteConty
+
 
 function createTableFromMap() {
   out("create table");
