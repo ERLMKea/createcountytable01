@@ -38,12 +38,49 @@ function addRow(county) {
   pbUpdate.type = "button";
   pbUpdate.setAttribute('value', 'Update Kommune');
   pbUpdate.onclick = function () {
-    updateRow(county, rowCount, row);
+    updateRow(county, rowCount, row, inp);
   }
   cell5.appendChild(pbUpdate);
 
 
 } //addRow
+
+async function updateRow(county, rowNo, row, inputfield) {
+  out(county);
+  county.name = inputfield.value;
+  const response = await restUpdateCounty(county);
+  out("nu har vi opdateret");
+  out(response);
+  //crazy rule, only change name once
+  inputfield.setAttribute('readonly', 'readonly');
+}
+
+async function restUpdateCounty(county) {
+  const url = "http://localhost:8080/county/" + county.countyCode;
+
+  const fetchOptions = {
+    method: "PUT",
+    headers: {
+      "Content-type": "application/json"
+    },
+    body: ""
+  }
+
+  const jsonString = JSON.stringify(county);
+  fetchOptions.body = jsonString;
+
+  //calls backend and wait for return
+  const response = await fetch(url, fetchOptions);
+
+  out(response);
+  if (!response.ok) {
+    out("Det gik ikke godt med update");
+  };
+
+  return response;
+} //restDeleteConty
+
+
 
 async function deleteRow(county, rowNo, row) {
   out(county);
