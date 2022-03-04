@@ -11,6 +11,30 @@ function addRow(county) {
   let cell2 = row.insertCell(1);
   cell2.innerText = county.name;
 
+  //ATag with county href
+  let cell3 = row.insertCell(2);
+  const atag = document.createElement('a');
+  atag.setAttribute("href", county.href);
+  atag.innerText = county.name;
+  cell3.appendChild(atag);
+
+  //delete button
+  let cell4 = row.insertCell(3);
+  const pbDelete = document.createElement("input");
+  pbDelete.type = "button";
+  pbDelete.setAttribute('value', 'Slet Kommune');
+  pbDelete.onclick = function () {
+    deleteRow(county, rowCount);
+  }
+  cell4.appendChild(pbDelete);
+
+} //addRow
+
+function deleteRow(county, rowNo) {
+  out(county);
+  out(rowNo);
+  countyTable.deleteRow(rowNo);
+
 }
 
 function createTableFromMap() {
