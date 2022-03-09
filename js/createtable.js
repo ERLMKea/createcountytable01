@@ -29,7 +29,13 @@ function addRow(county) {
   //Create a dropdown
   cell = row.insertCell(colCount++);
   const ddRegion = document.createElement("select");
-
+  regionMap.forEach(region => {
+    const el = document.createElement("option");
+    el.textContent = region.name;
+    el.value = region.regionCode;
+    ddRegion.appendChild(el);
+  });
+  cell.appendChild(ddRegion);
 
   //delete button
   cell = row.insertCell(colCount++);
