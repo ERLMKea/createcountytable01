@@ -3,17 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <title>Create County Table</title>
+  <link rel="stylesheet" href="css/styles2.css">
 </head>
 <body>
-<h1>Counties</h1>
-<button id="pbGetCounties">Get Counties</button>
-<button id="pbShowCountyMap">Show County Map</button>
-<button id="pbGetRegions">Fetch Regions</button>
-<button id="pbCreateTable">Create Table</button>
+<div class="container">
 
-<div class="div1">
+<h1>Counties</h1>
+<div class="row">
+  <button id="pbGetCounties" class="btn-options">Get Counties</button>
+  <button id="pbShowCountyMap" class="btn-options">Show County Map</button>
+  <button id="pbGetRegions" class="btn-options">Fetch Regions</button>
+  <button id="pbCreateTable" class="btn-options">Create Table</button>
+</div>
+
   <h2>Counties</h2>
-  <table class="table" id="countyTable">
+  <table class="content-table" id="countyTable">
+    <thead>
     <tr>
       <th>County Code</th>
       <th>County Name</th>
@@ -23,6 +28,9 @@
       <th>Delete</th>
       <th>Update</th>
     </tr>
+
+    </thead>
+    <tr></tr>
   </table>
 </div>
 
