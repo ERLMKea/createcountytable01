@@ -19,7 +19,7 @@ const regionMap = new Map();
 function createRegionMap(data) {
   data.forEach((region) => {
     //out(kommune.navn + "ix=" + index);
-    regionMap.set(region.name, region);
+    regionMap.set(region.regionCode, region);
   })
   out(regionMap);
 }

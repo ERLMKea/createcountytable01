@@ -29,11 +29,21 @@ function addRow(county) {
   //Create a dropdown
   cell = row.insertCell(colCount++);
   const ddRegion = document.createElement("select");
+  let ix = 0;
   regionMap.forEach(region => {
     const el = document.createElement("option");
     el.textContent = region.name;
     el.value = region.regionCode;
     ddRegion.appendChild(el);
+    if (region.regionCode == county.region.regionCode) {
+      ddRegion.selectedIndex = ix;
+    }
+    ix++;
+    ddRegion.addEventListener("change", (event) => {
+      const selind = ddRegion.selectedIndex;
+      const opt = ddRegion.options[selind];
+      county.region = regionMap.get(opt.value);
+    })
   });
   cell.appendChild(ddRegion);
 
