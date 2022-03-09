@@ -26,6 +26,10 @@ function addRow(county) {
   cell = row.insertCell(colCount++);
   cell.innerText = county.region.regionCode;
 
+  //Create a dropdown
+  cell = row.insertCell(colCount++);
+  const ddRegion = document.createElement("select");
+
 
   //delete button
   cell = row.insertCell(colCount++);
