@@ -3,44 +3,49 @@ out("vi er i create table");
 createCountyMap();
 
 function addRow(county) {
-  let rowCount = countyTable.rows.length;
+  const rowCount = countyTable.rows.length;
   let row = countyTable.insertRow(rowCount);
-  let cell1 = row.insertCell(0);
-  cell1.innerText = county.countyCode;
+  let colCount = 0;
 
+  let cell = row.insertCell(colCount++);
+  cell.innerText = county.countyCode;
 
-  let cell2 = row.insertCell(1);
+  cell = row.insertCell(colCount++);
   const inp = document.createElement('input');
   inp.type = "text";
   inp.setAttribute("value", county.name);
-  cell2.appendChild(inp);
+  cell.appendChild(inp);
 
   //ATag with county href
-  let cell3 = row.insertCell(2);
+  cell = row.insertCell(colCount++);
   const atag = document.createElement('a');
   atag.setAttribute("href", county.href);
   atag.innerText = county.name;
-  cell3.appendChild(atag);
+  cell.appendChild(atag);
+
+  cell = row.insertCell(colCount++);
+  cell.innerText = county.region.regionCode;
+
 
   //delete button
-  let cell4 = row.insertCell(3);
+  cell = row.insertCell(colCount++);
   const pbDelete = document.createElement("input");
   pbDelete.type = "button";
   pbDelete.setAttribute('value', 'Slet Kommune');
   pbDelete.onclick = function () {
     deleteRow(county, rowCount, row);
   }
-  cell4.appendChild(pbDelete);
+  cell.appendChild(pbDelete);
 
   //update button
-  let cell5 = row.insertCell(4);
+  cell = row.insertCell(colCount++);
   const pbUpdate = document.createElement("input");
   pbUpdate.type = "button";
   pbUpdate.setAttribute('value', 'Update Kommune');
   pbUpdate.onclick = function () {
     updateRow(county, rowCount, row, inp);
   }
-  cell5.appendChild(pbUpdate);
+  cell.appendChild(pbUpdate);
 
 
 } //addRow
