@@ -9,18 +9,19 @@ function fetchAllRegions() {
 }
 
 function actionFetchAllRegions(btn) {
+  out("fetch regions kaldt");
   const prom = fetchAllRegions();
-  prom.then(data => out(data));
+  prom.then(createRegionMap);
+  out("Vi er færdige med fetch regions");
 }
-
 
 const regionMap = new Map();
 function createRegionMap(data) {
-  out("show allkommuner");
-  data.forEach((county, index) => {
+  data.forEach((region) => {
     //out(kommune.navn + "ix=" + index);
-    regionMap.set(county.name, county);
+    regionMap.set(region.name, region);
   })
+  out(regionMap);
 }
 
 function showRegionMap() {

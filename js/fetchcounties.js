@@ -15,7 +15,6 @@ const countyMap = new Map();
 async function createCountyMap() {
   out("show allkommuner");
   const countyList = await fetchAllCounties();
-  out(countyList);
   countyList.forEach((county, index) => {
     //out(kommune.navn + "ix=" + index);
     countyMap.set(county.name, county);
@@ -24,7 +23,7 @@ async function createCountyMap() {
 
 function showCountyMap() {
   for (const countyKey of countyMap.keys()) {
-    out(countyMap.get(countyKey));
+    ;//out(countyMap.get(countyKey));
   }
 }
 
