@@ -1,3 +1,7 @@
+const out = function (str) {
+  console.log(str);
+}
+
 out("er i insert form");
 
 document.addEventListener('DOMContentLoaded', createFormEventListener);
@@ -17,11 +21,20 @@ async function handleFormSubmit(event) {
   try {
     const formData = new FormData(form);
     out(formData);
+    const responseData = await postFormDataAsJson(url, formData);
+    out(responseData);
 
   } catch (err) {
     alert(err.message);
     out(err);
   }
+}
+
+async function postFormDataAsJson(url, formData) {
+  out(formData.entries());
+  const plainFormData = Object.fromEntries(formData.entries());
+  out(plainFormData);
+
 }
 
 
