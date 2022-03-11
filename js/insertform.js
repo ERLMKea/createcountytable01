@@ -4,15 +4,18 @@ const out = function (str) {
 
 out("er i insert form");
 
+//execute function createFormEventListener when html is loaded
 document.addEventListener('DOMContentLoaded', createFormEventListener);
 
 let countyForm;
+//add eventlistener to html form
 function createFormEventListener() {
   countyForm = document.getElementById("newCountyForm");
   countyForm.addEventListener('submit', handleFormSubmit);
 }
 
 async function handleFormSubmit(event) {
+  //preventDefault forhindrer form i at udføre default submit. altås sende sig selv til backend.
   event.preventDefault();
   const form = event.currentTarget;
   const url = form.action;
@@ -20,7 +23,6 @@ async function handleFormSubmit(event) {
   out(url);
   try {
     const formData = new FormData(form);
-    out(formData);
     const responseData = await postFormDataAsJson(url, formData);
     out(responseData);
     alert(formData.get('name') + ' er oprettet');
