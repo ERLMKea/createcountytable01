@@ -1,11 +1,19 @@
 
 out('vi er igang med fetch regions');
 
-const regionsUrl = 'http://localhost:8080/regions';
+const regionsUrl = 'http://localhost:8080/regionsx';
+
+const outerr = function (err, str) {
+  out(err);
+  alert("Der var fejl:" + err + " " + str);
+  inp1.innerText = err;
+}
+
+const inp1 = document.getElementById("inperror");
 
 function fetchAllRegions() {
   out("get all regions kaldt");
-  return fetch(regionsUrl).then(response => response.json());
+  return fetch(regionsUrl).then(response => response.json()).catch(err => outerr(err, "fetch region err"));
 }
 
 function actionFetchAllRegions(btn) {
