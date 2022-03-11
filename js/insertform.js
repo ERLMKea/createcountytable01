@@ -35,6 +35,24 @@ async function postFormDataAsJson(url, formData) {
   const plainFormData = Object.fromEntries(formData.entries());
   out(plainFormData);
 
+  plainFormData.region = {};
+  plainFormData.region.regionCode = "1081";
+
+  const formDataJsonString = JSON.stringify(plainFormData);
+
+  const fetchOptions = {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: formDataJsonString
+  };
+
+  const response = await fetch(url, fetchOptions);
+  if (!response) {
+    const errorMessage = await response.text();
+    throw new Error(errorMessage);
+  }
+
+  return response.json();
 }
 
 
